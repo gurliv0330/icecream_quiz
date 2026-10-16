@@ -14,3 +14,10 @@ So basically I'm working on the CSS. I want like a bright, cutesy vibe for this 
 
 
 I STILL CANNOT FIX MY START QUIZ BUTTON (leading to a long crash out)
+
+
+
+So I will work on the button later, I messed around with the colours a little more. I have settled the theme. it is going to be blue and pink at most times but with a bit of a yellow
+
+
+
