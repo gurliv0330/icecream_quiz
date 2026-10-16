@@ -22,6 +22,8 @@ So I will work on the button later, I messed around with the colours a little mo
 
 Made the box bigger and more of a rectangle.
 
+I FIXED THE START BUTTON PROBLEM!!!!!!! YAYYYY!!!! but now it's not moving past the loading question screen
+
 
 
 
