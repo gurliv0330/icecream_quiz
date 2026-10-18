@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="veiwport" content="width=device-width, initial-scale=1.0">
+    <title>What Ice Cream Flavour Are You?</title>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+
+        
+    
+    
+
+    
+<body>
+
+    
+    <div class="quiz-container">
+
+        <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div id="start-box" class="fade-in">
+            <div style="font-size: 50px; margin-bottom: 10px;">🍦✨</div>
+            <h1 class="fun-title"> What Ice Cream Flavour Are You?</h1>
+            <p class="subtitle"> OMGGGGG YIPPEEEEEEEEEEEEEEEEE</p>
+            <button class="btn" type="button" onclick="startQuiz()">STARTTTT QUIZZZZZ <br> <small style="font-size: 12px; opacity: 0.8;">YES I'M VERY EXCITED IF YOU CAN'T ALREADY TELL</small></button>
+        </div>
+       
+        <div id="quiz-box" style="display: none";>
+            <span class="question-badge" id="question-badge"> </span>
+            <h2 id="question-text"></h2>
+            <div id="option-container"></div>
+        </div>
+
+
+
+
+       
+
+
+    <div id="result-box" style="display: none;">
+        <div style="font-size: 45px;">🎉🎉🎉</div>
+        <h2 style="margin-bottom: 5px;"> The ice cream that your soul resonates with the most so much so that it is flowing through your blood stream is:</h2>
+        <p id="flavor-desc"></p>
+        <button class="btn restart-btn" type="button" onclick="location.reload()">TAKEEE THE QUIZ AGAINNNN</button>
+    </div>
+        
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Q1: What is your ideal activity on a weekend to relax?",
+                options: [
+                    { text: "Going for an extremely long run by yourself for absolutely no reason", flavor: "cookie" },
+                    { text: "Stay in bed and read a whole book", flavor: "strawberry" },
+                    { text: "sleep. what else.", flavor: "vanilla" },
+                    { text: "Going out with friends", flavor: "chocolate" }
+                ]
+            },
+            {
+                question: "Q2: Pick your favourite subject",
+                options: [
+                    { text: "Maths (the goat)", flavor: "cookie" },
+                    { text: "English", flavor: "strawberry" },
+                    { text: "Science", flavor: "vanilla" },
+                    { text: "Social Studies", flavor: "chocolate" }
+                ]
+            },
+            {
+                question: "Q3: What is your favorite time of the day?",
+                options: [
+                    { text: "Midnight", flavor: "cookie" },
+                    { text: "Evening", flavor: "strawberry" },
+                    { text: "Morning", flavor: "vanilla" },
+                    { text: "Afternoon", flavor: "chocolate" }
+                ]
+            },
+            {
+                question: "Q4: Why do you hate me?",
+                options: [
+                    { text: "Because you're weird", flavor: "cookie" },
+                    { text: "I never said that", flavor: "strawberry" },
+                    { text: "Because I can", flavor: "vanilla" },
+                    { text: "I DONT EVEN KNWO YOU, HOW WOULD I HATE YOU!!!", flavor: "chocolate" }
+                ]
+            },
+            {
+                question: "Q5. What is your favourite color",
+                options: [
+                    { text: "Black (because i'm very cool and sigma, trust.)", flavor: "cookie" },
+                    { text: "Pink (very cutesy)", flavor: "strawberry" },
+                    { text: "Green/Yellow (nice)", flavor: "vanilla" },
+                    { text: "Red (OKAY GOAT)", flavor: "chocolate" }
+                ]
+            },
+            {
+                question: "Q6. HUHHHHHH??????",
+                options: [
+                    { text: "HUHHHHHHHHH??", flavor: "cookie" },
+                    { text: "huhhh", flavor: "strawberry" },
+                    { text: "twinsie, are you okay? like, in the head?", flavor: "vanilla" },
+                    { text: "yes", flavor: "chocolate" }
+
+                ]
+            },
+            {
+                question: "Q7. What are you doing right now?",
+                options: [
+                    { text: "JUMPING AROUND IN JOY (you BETTER be doing this)", flavor: "cookie" },
+                    { text: "Laying in bed because yes.", flavor: "strawberry" },
+                    { text: "existing", flavor: "vanilla" },
+                    { text: "GOODNIGHT", flavor: "chocolate" }
+                ]
+            },
+            {
+                question: "Q8. What is your favourite music genre? (finally a normal question here)",
+                options: [
+                    { text: "Indie/indie rock, or soemthign along those lines", flavor: "cookie" },
+                    { text: "Bedroom pop, or something soft", flavor: "strawberry" },
+                    { text: "Rap or R&B", flavor: "chocolate" },
+                    { text: "Rock", flavor: "vanilla" }
+                ]
+            },
+            {
+                question: "Q9. What's your favourite season?",
+                options: [
+                    { text: "Summer", flavor: "strawberry" }
+                ]
+            }
+        ];
+
+        const flavorInfo = {
+            vanilla: {
+                name: "Vanilla",
+                desc: "You are calm, classic, and you know what you want. You don't care about what others think about you, which is honestly a respectable trait. You are a simple human being who does what they want."
+            },
+            cookie: {
+                name: "Cookie And Cream",
+                desc: "You are fun, a little chaotic, and full of personality. You know how to make life feel exciting. You do whatever you want, and you do not care if people think that you are cringe. "
+            },
+            strawberry: {
+                name: "Strawberry",
+                desc: "You are warm, creative, and full of charm. You add a little sparkle to everything around you."
+            },
+            chocolate: {
+                name: "Chocolate",
+                desc: "You are dependable, rich in character, and a natural people person. You are the comforting favorite."
+            }
+        };
+
+        let currentQuestion = 0;
+        let scores = { vanilla: 0, cookie: 0, strawberry: 0, chocolate: 0 };
+
+        const startBox = document.getElementById('start-box');
+        const quizBox = document.getElementById('quiz-box');
+        const questionText = document.getElementById('question-text');
+        const optionContainer = document.getElementById('option-container');
+        const resultBox = document.getElementById('result-box');
+        const flavorDesc = document.getElementById('flavor-desc');
+        const progressContainer = document.getElementById('progress-container');
+        const questionBadge = document.getElementById('question-badge');
+        const progressBar = document.getElementById('progress-bar');
+
+        function startQuiz() {
+            startBox.style.display = 'none';
+            quizBox.style.display = 'block';
+            progressContainer.style.display = 'block';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResult();
+                return;
+            }
+
+            const progressPercent = (currentQuestion / questions.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            questionBadge.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+
+            quizBox.classList.remove('fade-in');
+            void quizBox.offsetWidth;
+            quizBox.classList.add('fade-in');
+
+            const question = questions[currentQuestion];
+            questionText.textContent = question.question;
+            optionContainer.innerHTML = '';
+
+            question.options.forEach((option) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'btn option-btn';
+                button.textContent = option.text;
+                button.addEventListener('click', () => selectAnswer(option.flavor));
+                optionContainer.appendChild(button);
+            });
+        }
+
+        function selectAnswer(flavor) {
+            scores[flavor] = (scores[flavor] || 0) + 1;
+            currentQuestion += 1;
+            loadQuestion();
+        }
+
+        function showResult() {
+            quizBox.style.display = 'none';
+            progressContainer.style.display = 'none';
+
+            resultBox.classList.add('fade-in');
+            resultBox.style.display = 'block';
+
+            const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+            const info = flavorInfo[winner];
+            flavorDesc.textContent = `${info.name}: ${info.desc}`;
+        }
+    </script>
+</body>
+</html>
