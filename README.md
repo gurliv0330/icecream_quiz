@@ -24,6 +24,8 @@ Made the box bigger and more of a rectangle.
 
 I FIXED THE START BUTTON PROBLEM!!!!!!! YAYYYY!!!! but now it's not moving past the loading question screen
 
+I added a progress bar to show how far you are in the quiz.
+
 
 
 
