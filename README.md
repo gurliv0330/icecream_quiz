@@ -27,6 +27,7 @@ I FIXED THE START BUTTON PROBLEM!!!!!!! YAYYYY!!!! but now it's not moving past 
 I added a progress bar to show how far you are in the quiz.
 I also forgot to mention that I removed the loading question screen.
 
+i removed the progress bar. it js wasn't working. I'm adding a few more questions because 8 did not seem enough. I'll fix the css and then ship it. 
 
 
 
